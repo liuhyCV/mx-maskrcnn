@@ -10,13 +10,15 @@ TEST_SET=val
 mkdir -p ${TRAIN_DIR}
 
 # Train
-python train_alternate_mask_fpn.py \
+python train_mask_only_fpn.py \
     --network resnet_fpn \
     --dataset ${DATASET} \
     --image_set ${SET} \
     --root_path ${TRAIN_DIR} \
-    --pretrained model/resnet-50 \
+    --pretrained model/final \
     --prefix ${TRAIN_DIR} \
     --pretrained_epoch 0 \
-    --gpu 0,1,2,3 |& tee -a ${TRAIN_DIR}/train.log
+    --resume \
+    --gpu 0 |& tee -a ${TRAIN_DIR}/train.log
+
 
